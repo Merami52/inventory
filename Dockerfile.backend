@@ -1,4 +1,16 @@
-FROM python:3.11-slim
+FROM python:3.11
+
+# Установка системных зависимостей для компиляции Python-пакетов
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    libpq-dev \
+    default-libmysqlclient-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Обновление pip до последней версии
+RUN pip install --upgrade pip
 
 WORKDIR /app
 
