@@ -6,7 +6,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 
-from ..config import settings
+from config import settings
 
 router = APIRouter()
 

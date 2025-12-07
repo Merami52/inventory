@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from pydantic import BaseModel
 
-from ..models.user import User
-from ..services.user_service import UserService
+from models.user import User
+from services.user_service import UserService
 from .auth import get_current_active_user
 
 router = APIRouter()
