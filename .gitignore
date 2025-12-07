@@ -1,33 +1,42 @@
 ```
-# Dependencies
-node_modules/
-venv/
-.venv/
-__pycache__/
-*.egg-info/
-.Python
-.pytest_cache/
-.mypy_cache/
-.tox/
-.coverage
-htmlcov/
-coverage/
+# Diagrams and documentation build artifacts
+*.puml
+*.plantuml
 
-# Build artifacts
-dist/
-build/
-target/
+# Temporary and build files
+*.tmp
+*.log
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Coverage and test artifacts
+coverage/
+htmlcov/
+.coverage
+*.coverage
+
+# Python specific
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
 *.so
-*.o
-*.a
-*.obj
-*.out
-*.exe
-*.dll
-*.class
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.tox/
+.coverage*
 
 # Compressed files
 *.zip
@@ -52,24 +61,4 @@ target/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Editor/IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-.DS_Store
-Thumbs.db
-
-# Docker
-.dockerenv
 ```
