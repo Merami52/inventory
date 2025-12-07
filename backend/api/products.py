@@ -2,8 +2,8 @@ from fastapi import APIRouter
 from typing import List
 from pydantic import BaseModel
 
-from ..models.product import Product
-from ..services.product_service import ProductService
+from models.product import Product
+from services.product_service import ProductService
 
 router = APIRouter()
 

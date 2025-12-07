@@ -1,5 +1,5 @@
 from typing import List, Optional
-from ..models.user import User, UserCreate, UserUpdate
+from models.user import User, UserCreate, UserUpdate
 
 class UserService:
     def __init__(self):

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from ..models.product import Product, ProductCreate, ProductUpdate
+from models.product import Product, ProductCreate, ProductUpdate
 
 class ProductService:
     def __init__(self):
