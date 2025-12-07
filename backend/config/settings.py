@@ -1,4 +1,4 @@
-rom pydantic_settings import BaseSettings
+from module import memberrom pydantic_settings import BaseSettings
 from typing import Optional
 
 
