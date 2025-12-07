@@ -1,15 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { createClient } from "@/lib/supabase/server"
 import { Package } from "lucide-react"
 
 export async function InventoryOverview() {
-  const supabase = await createClient()
-
-  const { data: products } = await supabase
-    .from("products")
-    .select("name, quantity, status")
-    .order("quantity", { ascending: true })
-    .limit(5)
+  // Mock data since Supabase integration has been removed
+  const products = [
+    { name: "Товар 1", quantity: 5, status: "active" },
+    { name: "Товар 2", quantity: 10, status: "active" },
+    { name: "Товар 3", quantity: 15, status: "active" },
+    { name: "Товар 4", quantity: 20, status: "active" },
+    { name: "Товар 5", quantity: 25, status: "active" },
+  ]
 
   return (
     <Card>

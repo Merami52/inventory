@@ -1,10 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
 import { CustomersTable } from "@/components/customers-table"
 
 export default async function CustomersPage() {
-  const supabase = await createClient()
-
-  const { data: customers } = await supabase.from("customers").select("*").order("created_at", { ascending: false })
+  // Mock data since Supabase integration has been removed
+  const customers = [
+    { id: 1, name: "Иван Петров", email: "ivan@example.com", phone: "+7 (999) 123-45-67", created_at: new Date().toISOString() },
+    { id: 2, name: "Мария Сидорова", email: "maria@example.com", phone: "+7 (999) 234-56-78", created_at: new Date().toISOString() },
+  ]
 
   return (
     <div className="space-y-6">
@@ -13,7 +14,7 @@ export default async function CustomersPage() {
         <p className="text-muted-foreground mt-2">Управление данными клиентов</p>
       </div>
 
-      <CustomersTable customers={customers || []} />
+      <CustomersTable customers={customers} />
     </div>
   )
 }

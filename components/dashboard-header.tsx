@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { LogOut, User } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import {
   DropdownMenu,
@@ -15,10 +14,10 @@ import {
 
 export function DashboardHeader({ user }: { user: { email?: string } }) {
   const router = useRouter()
-  const supabase = createClient()
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    // Clear any auth tokens/cookies if needed
+    // Redirect to login page
     router.push("/auth/login")
     router.refresh()
   }

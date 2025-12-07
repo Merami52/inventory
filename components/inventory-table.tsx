@@ -20,7 +20,6 @@ import {
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search, Edit, Plus } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 
 interface Product {
@@ -53,7 +52,6 @@ export function InventoryTable({
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const router = useRouter()
-  const supabase = createClient()
 
   const [formData, setFormData] = useState({
     name: "",
@@ -90,48 +88,46 @@ export function InventoryTable({
     e.preventDefault()
 
     if (editingProduct) {
-      const { error } = await supabase
-        .from("products")
-        .update({
-          name: formData.name,
-          sku: formData.sku,
-          price: Number.parseFloat(formData.price),
-          cost: Number.parseFloat(formData.cost),
-          quantity: Number.parseInt(formData.quantity),
-          status: formData.status,
-        })
-        .eq("id", editingProduct.id)
-
-      if (!error) {
-        router.refresh()
-        setEditingProduct(null)
-      }
+      // Update product in state (in a real app, this would be an API call)
+      const updatedProducts = products.map(product => 
+        product.id === editingProduct.id 
+          ? { 
+              ...product, 
+              name: formData.name,
+              sku: formData.sku,
+              price: Number.parseFloat(formData.price),
+              cost: Number.parseFloat(formData.cost),
+              quantity: Number.parseInt(formData.quantity),
+              status: formData.status,
+            } 
+          : product
+      )
+      setProducts(updatedProducts)
+      setEditingProduct(null)
     } else {
-      const { error } = await supabase.from("products").insert({
+      // Add new product to state (in a real app, this would be an API call)
+      const newProduct = {
+        id: `product_${Date.now()}`,
         name: formData.name,
         sku: formData.sku,
         price: Number.parseFloat(formData.price),
         cost: Number.parseFloat(formData.cost),
         quantity: Number.parseInt(formData.quantity),
-        category_id: formData.category_id || null,
-        description: formData.description,
         status: formData.status,
-      })
-
-      if (!error) {
-        router.refresh()
-        setIsAddOpen(false)
-        setFormData({
-          name: "",
-          sku: "",
-          price: "",
-          cost: "",
-          quantity: "",
-          category_id: "",
-          description: "",
-          status: "active",
-        })
+        categories: categories.find(cat => cat.id === formData.category_id) || null,
       }
+      setProducts([...products, newProduct])
+      setIsAddOpen(false)
+      setFormData({
+        name: "",
+        sku: "",
+        price: "",
+        cost: "",
+        quantity: "",
+        category_id: "",
+        description: "",
+        status: "active",
+      })
     }
   }
 
