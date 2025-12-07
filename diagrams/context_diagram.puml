@@ -1,0 +1,47 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 12
+skinparam component {
+  BackgroundColor #E6F3FF
+  BorderColor #004080
+}
+skinparam database {
+  BackgroundColor #FFE6E6
+  BorderColor #800000
+}
+
+title Диаграмма контекста системы StoreAdmin
+
+package "StoreAdmin System" {
+  component "Frontend\n(Next.js/React)" as Frontend #E6F7E6
+  component "API Gateway\n(FastAPI)" as Gateway #F0E6FF
+  component "Backend Service\n(FastAPI)" as Backend #FFF2E6
+  
+  node "Databases" {
+    database "PostgreSQL" as PG #FFE6E6
+    database "MySQL" as MY #FFE6E6
+    database "MongoDB" as MG #FFE6E6
+  }
+  
+  node "CI/CD" {
+    component "Jenkins" as Jenkins #E6F7E6
+  }
+
+  Frontend --> Gateway : "API Requests"
+  Gateway --> Backend : "Routing"
+  Backend --> PG : "Data"
+  Backend --> MY : "Data" 
+  Backend --> MG : "Data"
+  Gateway --> PG : "Service Data"
+  Gateway --> MY : "Service Data"
+  Gateway --> MG : "Service Data"
+}
+
+actor "Пользователь" as User #E6F3FF
+actor "Администратор" as Admin #E6F3FF
+
+User --> Frontend : "HTTP/HTTPS"
+Admin --> Jenkins : "CI/CD Management"
+
+@enduml

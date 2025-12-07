@@ -1,0 +1,50 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam component {
+    BackgroundColor #F0F8FF
+    BorderColor #666666
+    FontSize 10
+}
+
+title StoreAdmin System - Container Diagram
+
+package "StoreAdmin System" {
+    node "Frontend Container [Next.js]" as Frontend {
+        component "Frontend UI\nReact/Next.js\nPort 3000" as FE
+    }
+    
+    node "API Gateway Container [FastAPI]" as Gateway {
+        component "API Gateway\nFastAPI\nPort 8080" as AG
+    }
+    
+    node "Backend Container [FastAPI]" as Backend {
+        component "Main Backend\nFastAPI\nPort 8000\nServices: auth, users,\nproducts, orders,\ncustomers, categories" as BE
+    }
+    
+    database "PostgreSQL\nPort 5432\nPrimary DB" as PG
+    database "MySQL\nPort 3306\nSecondary DB" as MY
+    database "MongoDB\nPort 27017\nNoSQL DB" as MG
+    
+    node "CI/CD Container [Jenkins]" as Jenkins {
+        component "Jenkins\nCI/CD Server\nPort 8081" as JC
+    }
+}
+
+actor "Users\nWeb Browsers" as US
+actor "Admins\nDashboard Users" as AD
+
+US --> FE : "Use"
+AD --> FE : "Manage"
+
+FE --> AG : "API Requests\nPort 3000->8080"
+AG --> BE : "Forward Requests\nPort 8080->8000"
+BE --> PG : "Data Storage\nPostgreSQL"
+BE --> MY : "Data Storage\nMySQL"
+BE --> MG : "Data Storage\nMongoDB"
+
+JC --> BE : "CI/CD Pipeline"
+JC --> AG : "CI/CD Pipeline"
+JC --> FE : "CI/CD Pipeline"
+
+@enduml
