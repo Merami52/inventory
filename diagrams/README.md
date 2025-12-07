@@ -7,6 +7,11 @@
 - [context_diagram_description.md](context_diagram_description.md) - описание диаграммы контекста
 - [context_diagram.puml](context_diagram.puml) - диаграмма контекста в формате PlantUML
 
+## Диаграмма контейнеров
+- [container_diagram.md](container_diagram.md) - диаграмма контейнеров в формате Mermaid
+- [container_diagram_description.md](container_diagram_description.md) - описание диаграммы контейнеров
+- [container_diagram.puml](container_diagram.puml) - диаграмма контейнеров в формате PlantUML
+
 ## UML диаграммы
 - Диаграммы классов
 - Диаграммы последовательностей
