@@ -2,26 +2,25 @@
 # Dependencies
 node_modules/
 
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
-# Editors
+# Logs
+*.log
+
+# Editor/IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*.tmp
 
 # Build artifacts
 dist/
 build/
-coverage/
-htmlcov/
-*.out
+target/
 
 # Python
 __pycache__/
@@ -42,13 +41,23 @@ nosetests.xml
 coverage.xml
 *.cover
 *.log
-.pytest_cache/
-.mypy_cache/
+.DS_Store
+Thumbs.db
 
-# Compressed files
+# Compiled and binary files
+*.class
+*.o
+*.so
+*.a
+*.obj
+*.out
+*.exe
+*.dll
+*.jar
+*.war
 *.zip
-*.gz
 *.tar
+*.gz
 *.tgz
 *.bz2
 *.xz
@@ -64,12 +73,17 @@ coverage.xml
 *.Z
 *.lz
 *.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+
+# Test and coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
 
 # System files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Icon?
 ```
