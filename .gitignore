@@ -1,63 +1,37 @@
-```
-# Dependencies
-node_modules/
-
-# Environment
-.env
-.env.local
-.env.*
-
-# Logs
-*.log
-
-# Editor/IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# Build artifacts
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
 dist/
 build/
 target/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
+# Dependencies
 .venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
+venv/
+node_modules/
+.mypy_cache/
+.pytest_cache/
+.gradle/
+# Logs and temp files
 *.log
-.DS_Store
-Thumbs.db
-
-# Compiled and binary files
-*.class
-*.o
-*.so
-*.a
-*.obj
-*.out
-*.exe
-*.dll
-*.jar
-*.war
+*.tmp
+*.swp
+# Environment
+.env
+.env.local
+*.env.*
+# Editors
+.vscode/
+.idea/
+# Coverage
+coverage/
+htmlcov/
+.coverage
+# Compressed files
 *.zip
-*.tar
 *.gz
+*.tar
 *.tgz
 *.bz2
 *.xz
@@ -73,17 +47,7 @@ Thumbs.db
 *.Z
 *.lz
 *.lzo
-
-# Test and coverage
-coverage/
-htmlcov/
-.pytest_cache/
-.mypy_cache/
-.hypothesis/
-
-# System files
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Icon?
-```
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
