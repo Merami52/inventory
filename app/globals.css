@@ -67,7 +67,8 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border: 1px solid;
+    border-color: hsl(var(--border));
   }
   body {
     @apply bg-background text-foreground;
