@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Search } from "lucide-react"
-import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 
 interface Order {
@@ -42,7 +41,6 @@ export function OrdersTable({ orders: initialOrders }: { orders: Order[] }) {
   const [orders, setOrders] = useState(initialOrders)
   const [searchTerm, setSearchTerm] = useState("")
   const router = useRouter()
-  const supabase = createClient()
 
   const filteredOrders = orders.filter(
     (order) =>
@@ -51,12 +49,8 @@ export function OrdersTable({ orders: initialOrders }: { orders: Order[] }) {
   )
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
-    const { error } = await supabase.from("orders").update({ status: newStatus }).eq("id", orderId)
-
-    if (!error) {
-      setOrders(orders.map((order) => (order.id === orderId ? { ...order, status: newStatus } : order)))
-      router.refresh()
-    }
+    // Update order status in state (in a real app, this would be an API call)
+    setOrders(orders.map((order) => (order.id === orderId ? { ...order, status: newStatus } : order)))
   }
 
   return (

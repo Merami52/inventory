@@ -2,6 +2,27 @@
 # Dependencies
 node_modules/
 
+# Build artifacts
+dist/
+build/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
 # Python
 __pycache__/
 *.pyc
@@ -11,43 +32,40 @@ __pycache__/
 env/
 venv/
 .venv/
-.ENV
-.ENV.local
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
 
-# Build outputs
-dist/
-build/
+# Compiled and binary files
+*.class
 *.o
 *.obj
+*.exe
+*.dll
+*.so
+*.a
 *.out
+*.pyc
+*.pyo
+*.pyd
 
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# MyPy
-.mypy_cache/
-
-# Pytest
-.pytest_cache/
-
-# OS
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 ```

@@ -1,43 +1,22 @@
-import { createClient } from "@/lib/supabase/server"
 import { StatsCards } from "@/components/stats-cards"
 import { RecentOrders } from "@/components/recent-orders"
 import { InventoryOverview } from "@/components/inventory-overview"
 import { SalesChart } from "@/components/sales-chart"
 
 export default async function DashboardPage() {
-  const supabase = await createClient()
-
-  // Fetch statistics
-  const [
-    { count: totalOrders },
-    { data: orders },
-    { count: totalProducts },
-    { data: products },
-    { data: recentOrders },
-  ] = await Promise.all([
-    supabase.from("orders").select("*", { count: "exact", head: true }),
-    supabase.from("orders").select("total_amount, total_cost"),
-    supabase.from("products").select("*", { count: "exact", head: true }),
-    supabase.from("products").select("quantity, price, cost"),
-    supabase.from("orders").select("*, customers(full_name, email)").order("created_at", { ascending: false }).limit(5),
-  ])
-
-  const totalRevenue = orders?.reduce((sum, order) => sum + Number(order.total_amount), 0) || 0
-  const totalCost = orders?.reduce((sum, order) => sum + Number(order.total_cost), 0) || 0
-  const totalProfit = totalRevenue - totalCost
-
-  const inventoryValue =
-    products?.reduce((sum, product) => {
-      return sum + Number(product.price) * product.quantity
-    }, 0) || 0
-
+  // Mock data since Supabase integration has been removed
   const stats = {
-    totalOrders: totalOrders || 0,
-    totalRevenue,
-    totalProducts: totalProducts || 0,
-    totalProfit,
-    inventoryValue,
+    totalOrders: 150,
+    totalRevenue: 125000,
+    totalProducts: 50,
+    totalProfit: 45000,
+    inventoryValue: 250000,
   }
+
+  const recentOrders = [
+    { id: 1, order_number: "ORD-001", total: 5000, customer: { full_name: "Иван Петров", email: "ivan@example.com" }, created_at: new Date().toISOString() },
+    { id: 2, order_number: "ORD-002", total: 7500, customer: { full_name: "Мария Сидорова", email: "maria@example.com" }, created_at: new Date().toISOString() },
+  ]
 
   return (
     <div className="space-y-6">
@@ -53,7 +32,7 @@ export default async function DashboardPage() {
         <InventoryOverview />
       </div>
 
-      <RecentOrders orders={recentOrders || []} />
+      <RecentOrders orders={recentOrders} />
     </div>
   )
 }

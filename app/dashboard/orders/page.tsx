@@ -1,13 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
 import { OrdersTable } from "@/components/orders-table"
 
 export default async function OrdersPage() {
-  const supabase = await createClient()
-
-  const { data: orders } = await supabase
-    .from("orders")
-    .select("*, customers(full_name, email, phone)")
-    .order("created_at", { ascending: false })
+  // Mock data since Supabase integration has been removed
+  const orders = [
+    { id: 1, order_number: "ORD-001", customer: { full_name: "Иван Петров", email: "ivan@example.com", phone: "+7 (999) 123-45-67" }, total: 5000, status: "completed", created_at: new Date().toISOString() },
+    { id: 2, order_number: "ORD-002", customer: { full_name: "Мария Сидорова", email: "maria@example.com", phone: "+7 (999) 234-56-78" }, total: 7500, status: "pending", created_at: new Date().toISOString() },
+  ]
 
   return (
     <div className="space-y-6">
@@ -16,7 +14,7 @@ export default async function OrdersPage() {
         <p className="text-muted-foreground mt-2">Управление заказами и их статусами</p>
       </div>
 
-      <OrdersTable orders={orders || []} />
+      <OrdersTable orders={orders} />
     </div>
   )
 }
