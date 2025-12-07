@@ -1,13 +1,12 @@
-```
+```gitignore
+# Dependencies
+node_modules/
+
 # Build artifacts
 dist/
 build/
 *.js
 *.mjs
-*.css
-
-# Dependencies
-node_modules/
 
 # Logs and temp files
 *.log
@@ -17,7 +16,7 @@ node_modules/
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
